@@ -36,5 +36,29 @@ int main() {
     cout << "Calificacion 2: " << calificacion2 << endl;
     cout << "Calificacion 3: " << calificacion3 << endl;
     cout << "Promedio: " << promedio << endl;
+    
+    // NIVEL 2 - Condicionales if-else y validacion
+
+    if (edad < 0 || edad > 120) {
+        cout << "Edad invalida" << endl;
+        return 1;
+    }
+
+    if (calificacion1 < 0 || calificacion1 > 10 ||
+        calificacion2 < 0 || calificacion2 > 10 ||
+        calificacion3 < 0 || calificacion3 > 10) {
+        cout << "Error: las calificaciones deben estar entre 0 y 10." << endl;
+        return 1;
+    }
+
+    if (promedio >= 9) {
+        cout << "Estado: EXCELENTE" << endl;
+    } else if (promedio >= 7) {
+        cout << "Estado: APROBADO" << endl;
+    } else if (promedio >= 6) {
+        cout << "Estado: REGULAR (aprobado con lo minimo)" << endl;
+    } else {
+        cout << "Estado: REPROBADO" << endl;
+    }
     return 0;
 }
