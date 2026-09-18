@@ -8,7 +8,6 @@ int main() {
 
     string nombre;
     int edad;
-    float calificacion1, calificacion2, calificacion3;
     float promedio;
     int opcion;
 
@@ -19,11 +18,11 @@ int main() {
         cout << "2. Ver informacion del programa" << endl;
         cout << "3. Salir" << endl;
         cout << "Opcion: ";
-        cin >> opcion;
+    cin >> opcion;
 
         switch (opcion) {
 
-            case 1:
+            case 1: {
 
                 cout << "\n--- REGISTRAR ESTUDIANTE ---" << endl;
 
@@ -33,39 +32,64 @@ int main() {
     cout << "Edad: ";
     cin >> edad;
 
-    cout << "Calificacion 1: ";
-    cin >> calificacion1;
-
-    cout << "Calificacion 2: ";
-    cin >> calificacion2;
-
-    cout << "Calificacion 3: ";
-    cin >> calificacion3;
-
-    // Calculo del promedio
-    promedio = (calificacion1 + calificacion2 + calificacion3) / 3;
-
-    cout << "\n--- RESUMEN ---" << endl;
-    cout << "Nombre: " << nombre << endl;
-    cout << "Edad: " << edad << endl;
-    cout << "Calificacion 1: " << calificacion1 << endl;
-    cout << "Calificacion 2: " << calificacion2 << endl;
-    cout << "Calificacion 3: " << calificacion3 << endl;
-    cout << "Promedio: " << promedio << endl;
-    
-    // NIVEL 2 - Condicionales if-else y validacion
-
     if (edad < 0 || edad > 120) {
         cout << "Edad invalida" << endl;
-        return 1;
+        break;
     }
 
-    if (calificacion1 < 0 || calificacion1 > 10 ||
-        calificacion2 < 0 || calificacion2 > 10 ||
-        calificacion3 < 0 || calificacion3 > 10) {
-        cout << "Error: las calificaciones deben estar entre 0 y 10." << endl;
-        return 1;
+    int totalCalificaciones;
+                float calificacionActual;
+                float sumaCalificaciones = 0.0f;
+                float calificacionMaxima = -1.0f;
+                float calificacionMinima = 11.0f;
+                int aprobadas = 0;
+                int reprobadas = 0;
+
+    cout << "¿Cuantas calificaciones deseas registrar?: ";
+    cin >> totalCalificaciones;
+
+    if (totalCalificaciones <= 0) {
+    cout << "Error: Debe registrar al menos una calificacion." << endl;
+    break;
     }
+
+    for (int i = 1; i <= totalCalificaciones; i++) {
+                    cout << "Calificacion " << i << ": ";
+                    cin >> calificacionActual;
+
+                    if (calificacionActual < 0 || calificacionActual > 10) {
+                        cout << "Error: las calificaciones deben estar entre 0 y 10." << endl;
+                        i--; // Reintenta la calificación actual
+                        continue;
+                    }
+
+                    sumaCalificaciones += calificacionActual;
+
+                    if (calificacionActual >= 6) {
+                        aprobadas++;
+                    } else {
+                        reprobadas++;
+                    }
+
+                    if (calificacionActual > calificacionMaxima) {
+                        calificacionMaxima = calificacionActual;
+                    }
+                    if (calificacionActual < calificacionMinima) {
+                        calificacionMinima = calificacionActual;
+                    }
+                }
+
+                promedio = sumaCalificaciones / totalCalificaciones;
+
+                cout << "\n--- RESUMEN ---" << endl;
+                cout << "Nombre: " << nombre << endl;
+                cout << "Edad: " << edad << endl;
+                cout << "Promedio: " << promedio << endl;
+                cout << "Calificacion mas alta: " << calificacionMaxima << endl;
+                cout << "Calificacion mas baja: " << calificacionMinima << endl;
+                cout << "Calificaciones aprobadas: " << aprobadas << endl;
+                cout << "Calificaciones reprobadas: " << reprobadas << endl;
+
 
     if (promedio >= 9) {
         cout << "Estado: EXCELENTE" << endl;
@@ -77,6 +101,7 @@ int main() {
         cout << "Estado: REPROBADO" << endl;
     }
     break;
+}
 
             case 2:
 
