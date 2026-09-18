@@ -10,6 +10,22 @@ int main() {
     int edad;
     float calificacion1, calificacion2, calificacion3;
     float promedio;
+    int opcion;
+
+    do {
+
+        cout << "\n=== SISTEMA DE CALIFICACIONES ===" << endl;
+        cout << "1. Registrar estudiante" << endl;
+        cout << "2. Ver informacion del programa" << endl;
+        cout << "3. Salir" << endl;
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+
+            case 1:
+
+                cout << "\n--- REGISTRAR ESTUDIANTE ---" << endl;
 
     cout << "Nombre del estudiante: ";
     cin >> nombre;
@@ -60,5 +76,30 @@ int main() {
     } else {
         cout << "Estado: REPROBADO" << endl;
     }
+    break;
+
+            case 2:
+
+                cout << "\n--- INFORMACION DEL PROGRAMA ---" << endl;
+                cout << "Sistema de calificaciones escolares." << endl;
+                cout << "Permite registrar estudiantes y sus calificaciones." << endl;
+                cout << "Calcula el promedio de las calificaciones." << endl;
+
+                break;
+
+            case 3:
+
+                cout << "\nSaliendo del programa..." << endl;
+
+                break;
+
+            default:
+
+                cout << "\nOpcion no valida." << endl;
+
+                break;
+        }
+
+    } while (opcion != 3);
     return 0;
 }
