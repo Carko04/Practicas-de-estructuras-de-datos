@@ -9,6 +9,7 @@ int main() {
     string nombre;
     int edad;
     float promedio;
+    string opcionStr;
     int opcion;
 
     do {
@@ -17,8 +18,19 @@ int main() {
         cout << "1. Registrar estudiante" << endl;
         cout << "2. Ver informacion del programa" << endl;
         cout << "3. Salir" << endl;
-        cout << "Opcion: ";
-    cin >> opcion;
+        
+    do {
+            cout << "Opcion (1-3): ";
+            cin >> opcionStr;
+
+            if (opcionStr == "1") opcion = 1;
+            else if (opcionStr == "2") opcion = 2;
+            else if (opcionStr == "3") opcion = 3;
+            else {
+                cout << "Error: Opcion invalida. Intente de nuevo." << endl;
+                opcion = 0;
+            }
+        } while (opcion == 0);
 
         switch (opcion) {
 
