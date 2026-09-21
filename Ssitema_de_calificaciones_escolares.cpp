@@ -30,12 +30,10 @@ int main() {
     cin >> nombre;
 
     cout << "Edad: ";
-    cin >> edad;
-
-    if (edad < 0 || edad > 120) {
-        cout << "Edad invalida" << endl;
-        break;
-    }
+    while (!(cin >> edad) || edad < 0 || edad > 120) {
+                    cout << "Error: Edad invalida. Ingrese un entero entre 0 y 120: ";
+                    cin.clear();
+                }
 
     int totalCalificaciones;
                 float calificacionActual;
@@ -46,21 +44,16 @@ int main() {
                 int reprobadas = 0;
 
     cout << "¿Cuantas calificaciones deseas registrar?: ";
-    cin >> totalCalificaciones;
-
-    if (totalCalificaciones <= 0) {
-    cout << "Error: Debe registrar al menos una calificacion." << endl;
-    break;
-    }
+    while (!(cin >> totalCalificaciones) || totalCalificaciones <= 0) {
+                    cout << "Error: Debe ingresar un numero entero positivo: ";
+                    cin.clear();
+                }
 
     for (int i = 1; i <= totalCalificaciones; i++) {
                     cout << "Calificacion " << i << ": ";
-                    cin >> calificacionActual;
-
-                    if (calificacionActual < 0 || calificacionActual > 10) {
-                        cout << "Error: las calificaciones deben estar entre 0 y 10." << endl;
-                        i--; // Reintenta la calificación actual
-                        continue;
+                    while (!(cin >> calificacionActual) || calificacionActual < 0 || calificacionActual > 10) {
+                        cout << "Error: La calificacion debe ser un numero entre 0 y 10. Reintente Calificacion " << i << ": ";
+                        cin.clear();
                     }
 
                     sumaCalificaciones += calificacionActual;
