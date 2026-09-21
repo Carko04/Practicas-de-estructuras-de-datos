@@ -4,12 +4,12 @@
 using namespace std;
 
 int main() {
-    // NIVEL 1 - Estructura basica y declaracion de variables
 
     string nombre;
     int edad;
     float promedio;
     string opcionStr;
+    string basural;
     int opcion;
 
     do {
@@ -38,34 +38,74 @@ int main() {
 
                 cout << "\n--- REGISTRAR ESTUDIANTE ---" << endl;
 
-    cout << "Nombre del estudiante: ";
-    cin >> nombre;
+    bool nombreValido = false;
+                cout << "Nombre del estudiante: ";
+                while (!nombreValido) {
+                    cin >> nombre;
+                    nombreValido = true;
+
+                    // Verifica que no tenga dígitos ('0' al '9')
+                    for (char c : nombre) {
+                        if (c >= '0' && c <= '9') {
+                            nombreValido = false;
+                            break;
+                        }
+                    }
+
+                    if (!nombreValido) {
+                        cout << "Error: El nombre no puede contener numeros. Reintente Nombre: ";
+                    }
+                }
 
     cout << "Edad: ";
-    while (!(cin >> edad) || edad < 0 || edad > 120) {
-                    cout << "Error: Edad invalida. Ingrese un entero entre 0 y 120: ";
-                    cin.clear();
+                while (true) {
+                    if (!(cin >> edad)) {
+                        cin.clear();
+                        cin >> basural; // Solo lee basural si se ingresaron letras
+                        cout << "Error: Ingrese un numero valido. Reintente Edad: ";
+                    } else if (edad < 0 || edad > 120) {
+                        cout << "Error: La edad debe estar entre 0 y 120. Reintente Edad: ";
+                    } else {
+                        break; // Dato correcto
+                    }
                 }
 
     int totalCalificaciones;
                 float calificacionActual;
                 float sumaCalificaciones = 0.0f;
-                float calificacionMaxima = -1.0f;
-                float calificacionMinima = 11.0f;
+                float calificacionMaxima = 0.0f;
+                float calificacionMinima = 10.0f;
                 int aprobadas = 0;
                 int reprobadas = 0;
 
     cout << "¿Cuantas calificaciones deseas registrar?: ";
-    while (!(cin >> totalCalificaciones) || totalCalificaciones <= 0) {
-                    cout << "Error: Debe ingresar un numero entero positivo: ";
-                    cin.clear();
+                while (true) {
+                    if (!(cin >> totalCalificaciones)) {
+                        cin.clear();
+                        cin >> basural; // Limpia letras o texto atascado
+                        cout << "Error: Debe ingresar un numero entero. Reintente: ";
+                    } else if (totalCalificaciones <= 0) {
+                        // Para números negativos o cero, responde de inmediato sin pedir entrada extra
+                        cout << "Error: La cantidad debe ser un numero mayor a 0. Reintente: ";
+                    } else {
+                        break; // Cantidad válida
+                    }
                 }
 
-    for (int i = 1; i <= totalCalificaciones; i++) {
+                for (int i = 1; i <= totalCalificaciones; i++) {
                     cout << "Calificacion " << i << ": ";
-                    while (!(cin >> calificacionActual) || calificacionActual < 0 || calificacionActual > 10) {
-                        cout << "Error: La calificacion debe ser un numero entre 0 y 10. Reintente Calificacion " << i << ": ";
-                        cin.clear();
+
+                    // 4. VALIDACIÓN DE CADA CALIFICACIÓN
+                    while (true) {
+                        if (!(cin >> calificacionActual)) {
+                            cin.clear();
+                            cin >> basural; // Limpia letras o texto atascado
+                            cout << "Error: Ingrese un numero valido. Reintente Calificacion " << i << ": ";
+                        } else if (calificacionActual < 0.0f || calificacionActual > 10.0f) {
+                            cout << "Error: La calificacion debe estar entre 0 y 10. Reintente Calificacion " << i << ": ";
+                        } else {
+                            break; // Calificación válida
+                        }
                     }
 
                     sumaCalificaciones += calificacionActual;
